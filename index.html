@@ -1,233 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harry Nixon - CV</title>
-  <style>
-    :root {
-      --main: #00796b;
-      --sub: #555;
-      --line: #ccc;
-      --bg: #fdfdfd;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-      color: #222;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-    h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    h2.section-title {
-      color: var(--main);
-      margin-top: 40px;
-      border-bottom: 2px solid var(--line);
-      padding-bottom: 5px;
-    }
-    .summary, .section {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-      margin-top: 20px;
-    }
-    .exp-role {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .exp-box {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-      background: #fcfdfd;
-    }
-    ul.bullets {
-      padding-left: 20px;
-    }
-    .qr-code {
-      width: 33%;
-      max-width: 150px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    .roles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .role-card {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 8px;
-      background: #fff;
-      font-size: 0.9em;
-    }
-    .where, .when {
-      color: var(--sub);
-      font-size: 0.85em;
-    }
-    a {
-      color: var(--main);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Harry Nixon – CV</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0f172a;
+    --sub:#475569;
+    --muted:#94a3b8;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --line:#e2e8f0;
+    --brand:#0ea5e9;
+    --brand-ink:#075985;
+    --radius:18px;
+  }
+
+  *{ box-sizing:border-box }
+  html,body{ margin:0; background:var(--bg); color:var(--ink); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; }
+  a{ color:var(--brand-ink); text-decoration:none }
+  a:hover{ text-decoration:underline }
+  .page{ max-width:1100px; margin-inline:auto; padding:24px; }
+
+  header{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 24px;
+    box-shadow:0 10px 30px rgba(2, 8, 23, .06);
+  }
+  .name{ font-size:48px; line-height:1.05; margin:0 0 6px; font-weight:800; letter-spacing:.3px }
+  .contact{ color:var(--sub); font-size:15px }
+  .rule{ height:2px; background:var(--line); border:none; margin:18px 0 10px }
+  .lead{ color:var(--sub); max-width:80ch }
+
+  section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    margin-top:18px;
+    box-shadow:0 10px 28px rgba(2, 8, 23, .05);
+  }
+  .section-title{
+    font-size:26px; margin:0 0 14px; color:#0f766e; letter-spacing:.2px
+  }
+
+  .exp-role{ font-weight:800; margin:0; font-size:18px; letter-spacing:.2px }
+  .exp-meta{ color:var(--sub); margin:3px 0 14px; font-weight:600 }
+  .bullets{ margin:0; padding-left:20px }
+  .bullets li{ margin:8px 0; }
+
+  .portfolio-callout{
+    display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center;
+    border:1px solid var(--line); border-radius:14px; padding:12px 12px 10px; background:#fcfdfd; margin:10px 0 14px;
+  }
+  /* QR image (left) – small, tidy */
+  .portfolio-callout img{ width:84px; height:auto; display:block; border-radius:8px; }
+  .portfolio-text em{ font-style:italic }
+  .portfolio-link{ font-size:12px; color:#15803d; display:block; margin-top:4px; word-break:break-all }
+
+  .roles-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;
+    border:1px dashed var(--line); border-radius:12px; padding:14px;
+  }
+  .role-card{ padding:6px 4px 4px }
+  .role-card b{ display:block; font-size:13px; letter-spacing:.3px }
+  .role-card .where{ color:var(--sub); font-size:13px }
+  .role-card .when{ color:var(--muted); font-size:12px; margin-top:2px }
+
+  .skills{ display:grid; grid-template-columns:1fr 1fr; gap:8px 36px }
+  .skills ul{ margin:0; padding-left:18px }
+  .skills li{ margin:8px 0 }
+
+  .ed-header{ font-weight:800; margin:0 0 10px; font-size:18px }
+  .ed-sub{ color:var(--sub); margin:0 0 8px; font-weight:600 }
+  .ed-bullets{ margin:0; padding-left:20px }
+  .ed-bullets li{ margin:8px 0 }
+
+  .yt-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .yt-head{ display:flex; align-items:center; gap:10px; padding:16px 18px; border-bottom:1px solid var(--line) }
+  .yt-logo{ display:flex; align-items:center; gap:10px; font-weight:700 }
+  .yt-pill{ background:#ff0000; color:#fff; padding:4px 10px; border-radius:999px; font-size:12px; text-transform:uppercase; letter-spacing:.5px }
+  .yt-content{ display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; padding:18px }
+  .yt-title{ font-size:28px; margin:0 0 8px; font-weight:800 }
+  .yt-sub{ color:var(--sub); margin:0 0 14px; font-style:italic }
+  .yt-cta{ display:inline-flex; gap:10px; align-items:center; background:#ff0000; color:#fff; padding:10px 16px; border-radius:12px; font-weight:700; text-decoration:none }
+  .yt-link{ margin-top:10px; word-break:break-all }
+  .qrbox{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; box-shadow:0 6px 16px rgba(0,0,0,.06); width:min(300px,70vw) }
+  .qrbox img{ width:100%; height:auto; display:block }
+
+  /* Loadspreader screenshots grid */
+  .shots{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px }
+  .shots img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--line) }
+
+  @media (max-width:900px){
+    .yt-content{ grid-template-columns:1fr; }
+    .skills{ grid-template-columns:1fr; }
+    .roles-grid{ grid-template-columns:1fr; }
+  }
+
+  @media print{
+    :root{ --bg:#ffffff }
+    .page{ padding:0 }
+    header, section{ box-shadow:none; }
+    a{ color:#000; text-decoration:none }
+    .yt-cta{ background:transparent; color:#000; padding:0 }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
+  <div class="page">
+
     <header>
-      <h1>Harry Nixon</h1>
-      <p>
+      <h1 class="name">Harry Nixon</h1>
+      <div class="contact">
         Guisborough Road, Nunthorpe, Middlesbrough |
         (+44) 7467 140139 |
-        HarryNixon98@Gmail.com |
-        <a href="https://www.linkedin.com/in/harry-nixon-114678134/" target="_blank">LinkedIn</a>
+        <a href="mailto:HarryNixon98@gmail.com">HarryNixon98@Gmail.com</a> |
+        <a href="https://www.linkedin.com/in/harry-nixon-11467b134/" target="_blank" rel="noopener">linkedin.com/in/harry-nixon-11467b134/</a>
+      </div>
+      <hr class="rule" />
+      <p class="lead">
+        A dedicated and adaptable Mechanical Engineer with three years of experience in the heavy lift and transport industry. Proven ability to engineer complex lifting and transport solutions, ensuring compliance with safety standards while optimising efficiency and cost-effectiveness. A natural problem solver with strong technical expertise in CAD, engineering analysis, and risk assessments. Effective communicator with a proactive approach to teamwork, capable of collaborating across disciplines to deliver high-quality results. Passionate about continuous learning, innovation, and applying engineering principles to real-world challenges.
       </p>
     </header>
 
-    <!-- Summary -->
-    <section class="summary">
-      <p>
-        A dedicated and adaptable Mechanical Engineer with three years of experience in the heavy lift and transport industry. 
-        Proven ability to engineer complex lifting and transport solutions, ensuring compliance with safety standards while optimising efficiency and cost-effectiveness. 
-        Skilled in CAD, engineering analysis, risk assessments, and 3D animation. 
-        Passionate about continuous learning, innovation, and applying engineering principles to real-world challenges.
-      </p>
-    </section>
-
-    <!-- Experience -->
     <section id="experience">
       <h2 class="section-title">Experience</h2>
+
       <p class="exp-role">ENGINEER | MAMMOET | TEESSIDE | 2022–2025 (3 YEARS)</p>
 
-      <div class="exp-box">
-        <!-- QR + caption -->
-        <div class="portfolio-link" style="text-align:center; padding:10px 10px 0;">
-          <a href="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/view?usp=drivesdk" target="_blank" rel="noopener">
-            <img src="cv-qr.png" class="qr-code">
-            <p style="margin-top:8px; font-size:0.9em; color:var(--sub);">Scan or click to view my portfolio</p>
+      <div class="portfolio-callout">
+        <!-- Use your QR image saved in the repo root as cv-qr.png -->
+        <img src="cv-qr.png" alt="Portfolio QR">
+        <div class="portfolio-text">
+          <em>If interested, please see my portfolio of my work is available to download.</em><br>
+          ← <b>Scan the QR Code</b> <span style="color:var(--sub)">-or-</span> <b>Use the link below</b>
+          <a class="portfolio-link" href="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/view?usp=drivesdk" target="_blank" rel="noopener">
+            https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/view
           </a>
         </div>
+      </div>
 
-        <!-- Bullets -->
-        <ul class="bullets" style="margin-top:12px;">
-          <li>Created detailed AutoCAD drawings, RAMS, and performed temporary works design to ensure safe and efficient project execution.</li>
-          <li>Conducted site surveys using LiDAR scanning equipment, analysing 3D scan data to design accurate solutions.</li>
-          <li>Designed lifting and transport solutions using yard stock and third-party equipment to meet project requirements.</li>
-          <li>Planned crane and transport operations in compliance with BS7121, LOLER, and PUWER regulations.</li>
-          <li>Designed trailer arrangements, performed calculations, and produced swept path drawings with route study reports.</li>
-          <li>Developed 3D animations to support sales teams, helping to win contracts by visually demonstrating project plans.</li>
-          <li>Managed complex crane lifts, including tandem and crawler crane operations.</li>
-          <li>Coordinated RoRo/LoLo operations, barges and dockside logistics for heavy loads.</li>
-          <li>Oversaw transport operations using SPMTs for offshore oil, wind, and infrastructure projects.</li>
-          <li>Conducted structural, stability, and ground pressure calculations using in-house software.</li>
-          <li>Met with clients to discuss project needs and conduct site surveys.</li>
-        </ul>
+      <ul class="bullets">
+        <li>Created detailed <a href="#">AutoCAD</a> drawings, <a href="#">RAMS</a>, and performed temporary works design to ensure safe and efficient project execution.</li>
+        <li>Conducted site surveys using <a href="#">LiDAR scanning</a> equipment, analysing 3D scan data to design accurate solutions.</li>
+        <li><a href="#">Designed lifting and transport solutions</a> using yard stock and third-party equipment to meet project requirements.</li>
+        <li>Planned crane and transport operations in compliance with <a href="#">BS7121, LOLER, and PUWER regulations</a>, ensuring safety and efficiency.</li>
+        <li>Designed trailer arrangements, performed necessary calculations, and produced swept path drawings with <a href="#">route study reports</a> to support transport planning.</li>
+        <li>Developed <a href="#">3D animations</a> to support sales teams, helping to win contracts by visually demonstrating project plans.</li>
+        <li>Managed <a href="#">complex crane lifts</a>, including tandem and crawler crane operations, for large-scale projects.</li>
+        <li>Coordinated <a href="#">RoRo/LoLo operations</a>, handling of barges and dockside logistics for heavy loads.</li>
+        <li>Oversaw transport operations using SPMTs for offshore oil, wind, and infrastructure projects.</li>
+        <li>Conducted structural, stability, and ground pressure calculations using in-house software to ensure safe operations.</li>
+        <li>Met with clients to discuss project needs and conduct site surveys.</li>
+      </ul>
 
-        <!-- Earlier roles -->
-        <div class="roles-grid" aria-label="Earlier roles">
-          <div class="role-card"><b>WAREHOUSE OPERATIVE</b><div class="where">Morrisons, Teesside, UK</div><div class="when">2018 &amp; 2019</div></div>
-          <div class="role-card"><b>BAR STAFF</b><div class="where">The Mill, Teesside, UK</div><div class="when">2019 – 2020</div></div>
-          <div class="role-card"><b>DELIVERY DRIVER</b><div class="where">Domino’s, Teesside, UK</div><div class="when">2018</div></div>
-          <div class="role-card"><b>DELIVERY DRIVER</b><div class="where">Dido's, Ingleby Barwick</div><div class="when">2020</div></div>
-          <div class="role-card"><b>KITCHEN ASSISTANT</b><div class="where">Chinese Takeaway, Teesside, UK</div><div class="when">2019</div></div>
-          <div class="role-card"><b>STARTER &amp; DESSERT CHEF</b><div class="where">The Dudley Arms, Teesside, UK</div><div class="when">2017</div></div>
-          <div class="role-card"><b>PIZZA DELIVERY DRIVER</b><div class="where">Chinos, Coulby Newham</div><div class="when">2019</div></div>
-          <div class="role-card"><b>BAR STAFF</b><div class="where">The Cross Keys, Teesside, UK</div><div class="when">2018 – 2019</div></div>
+      <div class="roles-grid" aria-label="Earlier roles">
+        <div class="role-card">
+          <b>WAREHOUSE OPERATIVE</b>
+          <div class="where">Morrisons, Teesside, UK</div>
+          <div class="when">2018 &amp; 2019</div>
+        </div>
+        <div class="role-card">
+          <b>BAR STAFF</b>
+          <div class="where">The Mill, Teesside, UK</div>
+          <div class="when">2019 – 2020</div>
+        </div>
+        <div class="role-card">
+          <b>DELIVERY DRIVER</b>
+          <div class="where">Domino’s, Teesside, UK</div>
+          <div class="when">2018</div>
+        </div>
+
+        <div class="role-card">
+          <b>DELIVERY DRIVER</b>
+          <div class="where">Dido's, Ingleby Barwick</div>
+          <div class="when">2020</div>
+        </div>
+        <div class="role-card">
+          <b>KITCHEN ASSISTANT</b>
+          <div class="where">Chinese Takeaway, Teesside, UK</div>
+          <div class="when">2019</div>
+        </div>
+        <div class="role-card">
+          <b>STARTER &amp; DESSERT CHEF</b>
+          <div class="where">The Dudley Arms, Teesside, UK</div>
+          <div class="when">2017</div>
+        </div>
+
+        <div class="role-card">
+          <b>PIZZA DELIVERY DRIVER</b>
+          <div class="where">Chinos, Coulby Newham</div>
+          <div class="when">2019</div>
+        </div>
+        <div class="role-card">
+          <b>BAR STAFF</b>
+          <div class="where">The Cross Keys, Teesside, UK</div>
+          <div class="when">2018 – 2019</div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
-      <h2 class="section-title">Skills</h2>
-      <div class="section">
-        <ul class="bullets">
+      <h2 class="section-title">Skills &amp; Abilities</h2>
+      <div class="skills">
+        <ul>
           <li>AutoCAD, Blender, Inventor, ReCap, SAP (3+ years industry experience)</li>
           <li>Siemens NX, SolidWorks (university and personal projects)</li>
           <li>Pro/DESKTOP (school and college, 3 years)</li>
           <li>Fusion 360, FreeCAD (personal projects)</li>
           <li>Microsoft Office (3+ years industry experience)</li>
           <li>In-house software: AutoCrane, EZTrailer, Move3D (3+ years)</li>
+          <li>Programming: Python, C++, HTML, CSS, JavaScript, Java, C# (Unity)</li>
+        </ul>
+        <ul>
           <li>3D animation and visualisation</li>
           <li>Risk assessment and method statements (RAMS)</li>
           <li>Project planning and coordination</li>
           <li>LiDAR scanning and site surveys</li>
           <li>Ground bearing pressure analysis</li>
           <li>Temporary works design</li>
-          <li>Programming: Python, C++, HTML, CSS, JavaScript</li>
         </ul>
       </div>
     </section>
 
-    <!-- Education -->
-    <section id="education">
-      <h2 class="section-title">Education</h2>
-      <div class="section">
-        <p><b>Teesside University</b> — BEng Mechanical Engineering (2016–2020)</p>
-        <p><b>Prior Pursglove College</b> — A-Levels in Maths, Physics, Product Design (2014–2016)</p>
-      </div>
+    <section id="licenses">
+      <h2 class="section-title">Licenses &amp; Certifications</h2>
+      <ul class="bullets">
+        <li>Bachelor’s Degree in Mechanical Engineering</li>
+        <li>Appointed Person for Lifting Operations Card - Red</li>
+        <li>CCNSG (Safety Passport)</li>
+        <li>HS&amp;E MAP</li>
+        <li>Full UK Driving License</li>
+      </ul>
     </section>
 
-    <!-- Activities -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <p class="ed-header">BSc. MECHANICAL ENGINEERING | TEESSIDE UNIVERSITY | GRADUATED: 2021 (2:1)</p>
+      <ul class="ed-bullets">
+        <li>Studied applied mathematics, mechanics, thermodynamics, finite element analysis (FEA/FEM), structural analysis, fluid dynamics, and materials science.</li>
+        <li>Gained hands-on experience with CAD programs including Siemens NX and SolidWorks through practical projects.</li>
+        <li>Developed strong analytical and problem-solving skills through group and practical engineering projects.</li>
+      </ul>
+
+      <p class="ed-sub">OTHER RELEVANT EDUCATION</p>
+      <ul class="ed-bullets">
+        <li>A-Levels: Mathematics (B), Physics (C), Product Design (C)</li>
+        <li>GCSEs: Mathematics (A), Science Unit 1 (A), Science Unit 2 (A), Engineering (B), Computing (A), English (B)</li>
+        <li>OCR: I.T (Distinction)</li>
+      </ul>
+    </section>
+
+    <!-- Your exact Activities section -->
     <section id="activities">
       <h2 class="section-title">Activities and Interests</h2>
       <p>
-        Passionate about technology and innovation, I enjoy designing and developing my own software tools and apps, aiming to create reliable, user-friendly solutions that solve real problems. 
-        I also work on electronics projects, such as building a portable battery pack from repurposed waste batteries, to explore sustainable approaches to energy. 
+        Passionate about technology and innovation, I enjoy designing and developing my own software tools and apps, aiming to create reliable, user-friendly solutions that solve real problems. I also work on electronics projects, such as building a portable battery pack from repurposed waste batteries, to explore sustainable approaches to energy. 
       </p>
       <p>
-        Outside of engineering, I stay active through running and playing tennis multiple times a week with friends. 
-        I also enjoy playing guitar as a creative outlet, travelling to experience new cultures and perspectives, and exploring storytelling and strategy through movies and video games.
+        Outside of engineering, I stay active through running and playing tennis multiple times a week with friends. I also enjoy playing guitar as a creative outlet, travelling to experience new cultures and perspectives, and exploring storytelling and strategy through movies and video games.
       </p>
       <p>
-        Friends and colleagues would describe me as inventive, driven, and resourceful — someone who combines technical skill with creativity and a curiosity for how things work. 
-        I’m motivated by continuous learning and enjoy turning ideas into practical results, whether that’s in engineering, software, or personal projects.
+        Friends and colleagues would describe me as inventive, driven, and resourceful — someone who combines technical skill with creativity and a curiosity for how things work. I’m motivated by continuous learning and enjoy turning ideas into practical results, whether that’s in engineering, software, or personal projects.
       </p>
     </section>
 
-    <!-- Loadspreader App -->
+    <!-- New Loadspreader section (screenshots in repo root) -->
     <section id="loadspreader">
       <h2 class="section-title">Loadspreader App</h2>
-      <div class="section">
-        <p>
-          I created my own web-based <b>Loadspreader Calculator</b>, a tool to perform lifting equipment checks and ensure safe load distribution. 
-          It features real-time calculations, an intuitive interface, and is designed for engineers in heavy lifting and construction.
-        </p>
-        <p>
-          You can try it here: 
-          <a href="https://bretwalda98.github.io/Loadspreader_Unity_Checker/" target="_blank">Loadspreader Calculator</a>
-        </p>
+      <p>
+        I designed and developed a specialist mobile-friendly tool for calculating loadspreader beam configurations in lifting operations. 
+        The app combines my engineering expertise with software development, providing a reliable, ad-free solution for quick and accurate checks on site. 
+        It reflects my interest in building practical tools that improve safety and efficiency in heavy lift engineering.
+      </p>
+      <p>
+        <a href="https://bretwalda98.github.io/Loadspreader_Unity_Checker/" target="_blank" rel="noopener">
+          🔗 Try the Loadspreader App here
+        </a>
+      </p>
+      <div class="shots">
+        <img src="loadspreader-1.png" alt="Loadspreader app – input form">
+        <img src="loadspreader-2.png" alt="Loadspreader app – schematic view">
+        <img src="loadspreader-3.png" alt="Loadspreader app – results">
       </div>
     </section>
 
-    <!-- Animations -->
-    <section id="animations">
-      <h2 class="section-title">3D Animations</h2>
-      <div class="section">
-        <p>
-          I also produce <b>3D animations</b> to support engineering projects and client presentations. 
-          These animations demonstrate lift plans, equipment usage, and safe operation sequences.
-        </p>
-        <p>
-          Watch examples on my 
-          <a href="https://www.youtube.com/@HarryNixon98" target="_blank">YouTube channel</a>.
-        </p>
+    <section id="youtube">
+      <div class="yt-card">
+        <div class="yt-head">
+          <div class="yt-logo">
+            <svg width="28" height="20" viewBox="0 0 28 20" aria-hidden="true">
+              <rect x="0" y="0" width="28" height="20" rx="4" fill="#ff0000"></rect>
+              <polygon points="11,5 11,15 19,10" fill="#ffffff"></polygon>
+            </svg>
+            YouTube
+          </div>
+          <span class="yt-pill">Official Link</span>
+        </div>
+        <div class="yt-content">
+          <div>
+            <h3 class="yt-title">3D Animation Examples</h3>
+            <p class="yt-sub">Please use the QR Code to get the links to the YouTube videos!</p>
+            <a class="yt-cta" href="https://www.youtube.com/@harrynix98/videos" target="_blank" rel="noopener">
+              &#9654;&nbsp; Watch on YouTube
+            </a>
+            <p class="yt-link"><a href="https://www.youtube.com/@harrynix98/videos" target="_blank" rel="noopener">https://www.youtube.com/@harrynix98/videos</a></p>
+          </div>
+          <div>
+            <div class="qrbox">
+              <img src="assets/qr-youtube.png" alt="QR code to the YouTube videos">
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
   </div>
 </body>
 </html>
