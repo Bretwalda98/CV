@@ -51,7 +51,6 @@
   }
 
   .exp-role{ font-weight:800; margin:0; font-size:18px; letter-spacing:.2px }
-  .exp-meta{ color:var(--sub); margin:3px 0 14px; font-weight:600 }
   .bullets{ margin:0; padding-left:20px }
   .bullets li{ margin:8px 0; }
 
@@ -59,7 +58,6 @@
     display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center;
     border:1px solid var(--line); border-radius:14px; padding:12px 12px 10px; background:#fcfdfd; margin:10px 0 14px;
   }
-  /* QR image (left) – small, tidy */
   .portfolio-callout img{ width:84px; height:auto; display:block; border-radius:8px; }
   .portfolio-text em{ font-style:italic }
   .portfolio-link{ font-size:12px; color:#15803d; display:block; margin-top:4px; word-break:break-all }
@@ -98,7 +96,7 @@
   .qrbox{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px; box-shadow:0 6px 16px rgba(0,0,0,.06); width:min(300px,70vw) }
   .qrbox img{ width:100%; height:auto; display:block }
 
-  /* Loadspreader screenshots grid */
+  /* App screenshots grid */
   .shots{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px }
   .shots img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--line) }
 
@@ -140,7 +138,7 @@
       <p class="exp-role">ENGINEER | MAMMOET | TEESSIDE | 2022–2025 (3 YEARS)</p>
 
       <div class="portfolio-callout">
-        <!-- Use your QR image saved in the repo root as cv-qr.png -->
+        <!-- QR image saved in repo root as cv-qr.png -->
         <img src="cv-qr.png" alt="Portfolio QR">
         <div class="portfolio-text">
           <em>If interested, please see my portfolio of my work is available to download.</em><br>
@@ -166,48 +164,14 @@
       </ul>
 
       <div class="roles-grid" aria-label="Earlier roles">
-        <div class="role-card">
-          <b>WAREHOUSE OPERATIVE</b>
-          <div class="where">Morrisons, Teesside, UK</div>
-          <div class="when">2018 &amp; 2019</div>
-        </div>
-        <div class="role-card">
-          <b>BAR STAFF</b>
-          <div class="where">The Mill, Teesside, UK</div>
-          <div class="when">2019 – 2020</div>
-        </div>
-        <div class="role-card">
-          <b>DELIVERY DRIVER</b>
-          <div class="where">Domino’s, Teesside, UK</div>
-          <div class="when">2018</div>
-        </div>
-
-        <div class="role-card">
-          <b>DELIVERY DRIVER</b>
-          <div class="where">Dido's, Ingleby Barwick</div>
-          <div class="when">2020</div>
-        </div>
-        <div class="role-card">
-          <b>KITCHEN ASSISTANT</b>
-          <div class="where">Chinese Takeaway, Teesside, UK</div>
-          <div class="when">2019</div>
-        </div>
-        <div class="role-card">
-          <b>STARTER &amp; DESSERT CHEF</b>
-          <div class="where">The Dudley Arms, Teesside, UK</div>
-          <div class="when">2017</div>
-        </div>
-
-        <div class="role-card">
-          <b>PIZZA DELIVERY DRIVER</b>
-          <div class="where">Chinos, Coulby Newham</div>
-          <div class="when">2019</div>
-        </div>
-        <div class="role-card">
-          <b>BAR STAFF</b>
-          <div class="where">The Cross Keys, Teesside, UK</div>
-          <div class="when">2018 – 2019</div>
-        </div>
+        <div class="role-card"><b>WAREHOUSE OPERATIVE</b><div class="where">Morrisons, Teesside, UK</div><div class="when">2018 &amp; 2019</div></div>
+        <div class="role-card"><b>BAR STAFF</b><div class="where">The Mill, Teesside, UK</div><div class="when">2019 – 2020</div></div>
+        <div class="role-card"><b>DELIVERY DRIVER</b><div class="where">Domino’s, Teesside, UK</div><div class="when">2018</div></div>
+        <div class="role-card"><b>DELIVERY DRIVER</b><div class="where">Dido's, Ingleby Barwick</div><div class="when">2020</div></div>
+        <div class="role-card"><b>KITCHEN ASSISTANT</b><div class="where">Chinese Takeaway, Teesside, UK</div><div class="when">2019</div></div>
+        <div class="role-card"><b>STARTER &amp; DESSERT CHEF</b><div class="where">The Dudley Arms, Teesside, UK</div><div class="when">2017</div></div>
+        <div class="role-card"><b>PIZZA DELIVERY DRIVER</b><div class="where">Chinos, Coulby Newham</div><div class="when">2019</div></div>
+        <div class="role-card"><b>BAR STAFF</b><div class="where">The Cross Keys, Teesside, UK</div><div class="when">2018 – 2019</div></div>
       </div>
     </section>
 
@@ -262,7 +226,6 @@
       </ul>
     </section>
 
-    <!-- Your exact Activities section -->
     <section id="activities">
       <h2 class="section-title">Activities and Interests</h2>
       <p>
@@ -276,7 +239,7 @@
       </p>
     </section>
 
-    <!-- New Loadspreader section (screenshots in repo root) -->
+    <!-- Loadspreader App -->
     <section id="loadspreader">
       <h2 class="section-title">Loadspreader App</h2>
       <p>
@@ -293,6 +256,25 @@
         <img src="loadspreader-1.png" alt="Loadspreader app – input form">
         <img src="loadspreader-2.png" alt="Loadspreader app – schematic view">
         <img src="loadspreader-3.png" alt="Loadspreader app – results">
+      </div>
+    </section>
+
+    <!-- ToneSmith – Guitar Tuner -->
+    <section id="tonesmith">
+      <h2 class="section-title">ToneSmith – Guitar Tuner App</h2>
+      <p>
+        I designed and built <b>ToneSmith</b>, a precision offline guitar tuner for mobile and desktop, developed with HTML, CSS, and JavaScript. 
+        The app captures audio from the device microphone, performs real-time frequency analysis, and reports both absolute frequency (Hz) and pitch deviation (± cents) with a responsive needle display.
+      </p>
+      <p>
+        ToneSmith is <b>offline-first and customisable</b>: alternate tunings, adjustable reference frequency (A<sub>4</sub> from 440–1000 Hz), and user-defined string notes. 
+        The dark UI is optimised for small screens with simple controls and clear feedback, focusing on accuracy without distractions.
+      </p>
+      <p>
+        This project combines <b>signal processing</b>, <b>front-end engineering</b>, and <b>UX design</b> to produce a reliable musician’s tool.
+      </p>
+      <div class="shots">
+        <img src="tonesmith.png" alt="ToneSmith – Offline Guitar Tuner screenshot">
       </div>
     </section>
 
