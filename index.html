@@ -27,6 +27,7 @@
     --brand-ink:#075985;
     --radius:18px;
   }
+  /* Dark mode overrides */
   [data-theme="dark"]{
     --ink:#e5e7eb;
     --sub:#cbd5e1;
@@ -69,11 +70,12 @@
   .embed-toolbar .btn{ border:1px solid var(--line); background:var(--card); border-radius:10px; padding:6px 10px; font-weight:600; cursor:pointer; font-size:14px }
   .embed-toolbar .btn:hover{ background:#f1f5f9 }
 
-  .skills{ display:grid; grid-template-columns:1fr 1fr; gap:8px 36px }
-  .skills h3{ margin:8px 0 4px; font-size:16px } .skills ul{ margin:0; padding-left:18px } .skills li{ margin:6px 0 }
-
+  /* App screenshots grid */
   .shots{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px }
   .shots img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--line) }
+
+  .skills{ display:grid; grid-template-columns:1fr 1fr; gap:8px 36px }
+  .skills h3{ margin:8px 0 4px; font-size:16px } .skills ul{ margin:0; padding-left:18px } .skills li{ margin:6px 0 }
 
   .earlier-roles{ color:var(--sub); margin-top:10px }
 
@@ -82,77 +84,98 @@
 </style>
 
 <script>
+  // Toggle button
   function toggleTheme(){
-    const r=document.documentElement;
-    r.dataset.theme=r.dataset.theme==="dark"?"":"dark";
-    try{localStorage.setItem("cv-theme",r.dataset.theme||"light");}catch(e){}
+    const r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === "dark" ? "" : "dark";
+    try{ localStorage.setItem("cv-theme", r.dataset.theme || "light"); }catch(e){}
   }
-  (function(){try{const pref=localStorage.getItem("cv-theme");if(pref==="dark")document.documentElement.dataset.theme="dark";}catch(e){}})();
-  function downloadPDF(){window.print();}
+
+  // OPTION 2: Default to dark unless a saved preference exists
+  (function(){
+    try{
+      const pref = localStorage.getItem("cv-theme");
+      if(pref){
+        if(pref === "dark") document.documentElement.dataset.theme = "dark";
+        // if 'light' was saved, leave as default light (no data-theme attr)
+      }else{
+        document.documentElement.dataset.theme = "dark"; // default to dark for first-time visitors
+      }
+    }catch(e){}
+  })();
+
+  // Print to PDF
+  function downloadPDF(){ window.print(); }
 </script>
 </head>
 <body>
-<div class="page">
+  <div class="page">
 
-<header>
-  <h1 class="name">Harry Nixon</h1>
-  <div class="contact">
-    <span>Guisborough Road, Nunthorpe, Middlesbrough</span> |
-    <span>(+44) 7467 140139</span> |
-    <a href="mailto:HarryNixon98@gmail.com">HarryNixon98@Gmail.com</a> |
-    <a href="https://www.linkedin.com/in/harry-nixon-11467b134/" target="_blank" rel="noopener">linkedin.com/in/harry-nixon-11467b134/</a>
-  </div>
-  <div class="toolbar">
-    <button class="btn" onclick="downloadPDF()">Download PDF</button>
-    <button class="btn" onclick="toggleTheme()">Toggle dark mode</button>
-  </div>
-  <hr class="rule" />
-  <p class="lead">
-    A dedicated and adaptable Mechanical Engineer with three years of experience in the heavy lift and transport industry. Proven ability to engineer complex lifting and transport solutions, ensuring compliance with safety standards while optimising efficiency and cost-effectiveness. A natural problem solver with strong technical expertise in CAD, engineering analysis, and risk assessments. Effective communicator with a proactive approach to teamwork, capable of collaborating across disciplines to deliver high-quality results. Passionate about continuous learning, innovation, and applying engineering principles to real-world challenges.
-  </p>
-</header>
-
-<section id="experience">
-  <h2 class="section-title">Experience</h2>
-  <p class="exp-role">ENGINEER | MAMMOET | TEESSIDE | 2022–2025 (3 YEARS)</p>
-
-  <!-- Portfolio embedded viewer -->
-  <div class="embed-wrap" aria-label="Portfolio viewer">
-    <iframe
-      class="embed-aspect"
-      src="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/preview"
-      allow="autoplay; fullscreen"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Engineering Portfolio Preview">
-    </iframe>
-    <div class="embed-toolbar">
-      <span style="color:var(--sub); font-size:14px;">If the viewer doesn’t load:</span>
-      <div>
-        <a class="btn" target="_blank" rel="noopener"
-           href="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/view?usp=sharing">Open in Google Drive</a>
-        <a class="btn" target="_blank" rel="noopener"
-           href="https://drive.google.com/uc?export=download&id=1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis">Download</a>
+    <header>
+      <h1 class="name">Harry Nixon</h1>
+      <div class="contact" aria-label="Contact details">
+        <span>Guisborough Road, Nunthorpe, Middlesbrough</span> |
+        <span>(+44) 7467 140139</span> |
+        <a href="mailto:HarryNixon98@gmail.com">HarryNixon98@Gmail.com</a> |
+        <a href="https://www.linkedin.com/in/harry-nixon-11467b134/" target="_blank" rel="noopener" aria-label="LinkedIn profile">linkedin.com/in/harry-nixon-11467b134/</a>
       </div>
-    </div>
-  </div>
 
-  <ul class="bullets">
-    <li>Created detailed AutoCAD drawings, RAMS, and performed temporary works design to ensure safe and efficient project execution.</li>
-    <li>Conducted site surveys using LiDAR scanning equipment, analysing 3D scan data to design accurate solutions.</li>
-    <li>Designed lifting and transport solutions using yard stock and third-party equipment to meet project requirements.</li>
-    <li>Planned crane and transport operations in compliance with BS7121, LOLER, and PUWER regulations, ensuring safety and efficiency.</li>
-    <li>Designed trailer arrangements, performed necessary calculations, and produced swept path drawings with route study reports to support transport planning.</li>
-    <li>Developed 3D animations to support sales teams, helping to win contracts by visually demonstrating project plans.</li>
-    <li>Managed complex crane lifts, including tandem and crawler crane operations, for large-scale projects.</li>
-    <li>Coordinated RoRo/LoLo operations, handling of barges and dockside logistics for heavy loads.</li>
-    <li>Oversaw transport operations using SPMTs for offshore oil, wind, and infrastructure projects.</li>
-    <li>Conducted structural, stability, and ground pressure calculations using in-house software to ensure safe operations.</li>
-    <li>Met with clients to discuss project needs and conduct site surveys.</li>
-  </ul>
+      <div class="toolbar" role="toolbar" aria-label="CV actions">
+        <button class="btn" onclick="downloadPDF()">Download PDF</button>
+        <button class="btn" onclick="toggleTheme()">Toggle dark mode</button>
+      </div>
 
-  <p class="earlier-roles">Earlier roles: Warehouse Operative (Morrisons), Bar Staff (The Mill; Cross Keys), Delivery Driver (Domino’s; Dido’s; Chinos), Kitchen Assistant (Chinese Takeaway).</p>
-</section>
+      <hr class="rule" />
+      <p class="lead">
+        A dedicated and adaptable Mechanical Engineer with three years of experience in the heavy lift and transport industry. Proven ability to engineer complex lifting and transport solutions, ensuring compliance with safety standards while optimising efficiency and cost-effectiveness. A natural problem solver with strong technical expertise in CAD, engineering analysis, and risk assessments. Effective communicator with a proactive approach to teamwork, capable of collaborating across disciplines to deliver high-quality results. Passionate about continuous learning, innovation, and applying engineering principles to real-world challenges.
+      </p>
+    </header>
+
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+
+      <p class="exp-role">ENGINEER | MAMMOET | TEESSIDE | 2022–2025 (3 YEARS)</p>
+
+      <!-- Engineering Portfolio – Embedded Viewer (replaces QR/link) -->
+      <div class="embed-wrap" aria-label="Portfolio viewer">
+        <iframe
+          class="embed-aspect"
+          src="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/preview"
+          allow="autoplay; fullscreen"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Engineering Portfolio Preview">
+        </iframe>
+
+        <div class="embed-toolbar">
+          <span style="color:var(--sub); font-size:14px;">If the viewer doesn’t load:</span>
+          <div>
+            <a class="btn" target="_blank" rel="noopener"
+              href="https://drive.google.com/file/d/1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis/view?usp=sharing">Open in Google Drive</a>
+            <a class="btn" target="_blank" rel="noopener"
+              href="https://drive.google.com/uc?export=download&id=1j2Eg9CCE5xjLT9nK8i5z7S6rAz4wCnis">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <ul class="bullets">
+        <li>Created detailed AutoCAD drawings, RAMS, and performed temporary works design to ensure safe and efficient project execution.</li>
+        <li>Conducted site surveys using LiDAR scanning equipment, analysing 3D scan data to design accurate solutions.</li>
+        <li>Designed lifting and transport solutions using yard stock and third-party equipment to meet project requirements.</li>
+        <li>Planned crane and transport operations in compliance with BS7121, LOLER, and PUWER regulations, ensuring safety and efficiency.</li>
+        <li>Designed trailer arrangements, performed necessary calculations, and produced swept path drawings with route study reports to support transport planning.</li>
+        <li>Developed 3D animations to support sales teams, helping to win contracts by visually demonstrating project plans.</li>
+        <li>Managed complex crane lifts, including tandem and crawler crane operations, for large-scale projects.</li>
+        <li>Coordinated RoRo/LoLo operations, handling of barges and dockside logistics for heavy loads.</li>
+        <li>Oversaw transport operations using SPMTs for offshore oil, wind, and infrastructure projects.</li>
+        <li>Conducted structural, stability, and ground pressure calculations using in-house software to ensure safe operations.</li>
+        <li>Met with clients to discuss project needs and conduct site surveys.</li>
+      </ul>
+
+      <p class="earlier-roles" aria-label="Earlier roles">
+        Earlier roles: Warehouse Operative (Morrisons), Bar Staff (The Mill; Cross Keys), Delivery Driver (Domino’s; Dido’s; Chinos), Kitchen Assistant (Chinese Takeaway).
+      </p>
+    </section>
 
     <section id="skills">
       <h2 class="section-title">Skills &amp; Abilities</h2>
@@ -246,28 +269,25 @@
       </div>
     </section>
 
-    <!-- Mini-CAD 2D (.DXF) -->
+    <!-- Mini-CAD 2D (.DXF) — ONE screenshot only -->
     <section id="mini-cad">
       <h2 class="section-title">Mini-CAD 2D (.DXF) App</h2>
       <p>
-        A lightweight browser CAD I’m building for fast 2D drafting and DXF export. It features an AutoCAD-style crosshair & pickbox,
-        pan/zoom (mouse & trackpad), layers, snaps, basic geometry (line, polyline, circle, arc), and a growing command set.
-        The goal is a portable, offline-capable tool for sketches, rigging layouts, and CNC/laser prep.
+        A lightweight browser CAD I’m building for fast 2D drafting and DXF export. It features an AutoCAD-style crosshair &amp; pickbox,
+        pan/zoom, layers, snaps, basic geometry (line, polyline, circle, arc), and a growing command set. The goal is a portable, offline-capable
+        tool for sketches, rigging layouts, and CNC/laser prep.
       </p>
       <p>
         <a href="https://bretwalda98.github.io/Engineering-Tools-Menu/?app=mini-cad" target="_blank" rel="noopener" aria-label="Open Mini-CAD via Tools Menu">
           🔗 Open Mini-CAD from the Tools Menu
         </a>
-        <!-- If you have a direct Mini-CAD page, replace the link above with it. -->
       </p>
-      <div class="shots" aria-label="Mini-CAD screenshots">
+      <div class="shots" aria-label="Mini-CAD screenshot">
         <img src="mini-cad-1.png" alt="Mini-CAD – canvas & command bar">
-        <img src="mini-cad-2.png" alt="Mini-CAD – layers & snaps UI">
-        <img src="mini-cad-3.png" alt="Mini-CAD – DXF export preview">
       </div>
     </section>
 
-    <!-- 2D Frame / Beam Calculator (Backbone) -->
+    <!-- 2D Frame / Beam Calculator — ONE screenshot only -->
     <section id="frame-beam">
       <h2 class="section-title">2D Frame / Beam Calculator</h2>
       <p>
@@ -279,12 +299,9 @@
         <a href="https://bretwalda98.github.io/Engineering-Tools-Menu/?app=frame-beam" target="_blank" rel="noopener" aria-label="Open 2D Frame/Beam via Tools Menu">
           🔗 Open the 2D Frame/Beam Calculator from the Tools Menu
         </a>
-        <!-- If you have a direct Backbone/Frame app URL, replace the link above with it. -->
       </p>
-      <div class="shots" aria-label="2D Frame/Beam screenshots">
+      <div class="shots" aria-label="2D Frame/Beam screenshot">
         <img src="frame-1.png" alt="Frame/Beam – model & supports">
-        <img src="frame-2.png" alt="Frame/Beam – moment & shear graphs">
-        <img src="frame-3.png" alt="Frame/Beam – deflection & results">
       </div>
     </section>
 
