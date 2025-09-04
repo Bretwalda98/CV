@@ -20,7 +20,7 @@
     --ink:#0f172a;
     --sub:#475569;
     --muted:#94a3b8;
-    --bg:#f8fafc;
+    --bg:#0b1220;         /* will be overridden by light mode unless data-theme="dark" */
     --card:#ffffff;
     --line:#e2e8f0;
     --brand:#0ea5e9;
@@ -63,24 +63,61 @@
   .exp-role{ font-weight:800; margin:0 0 8px; font-size:18px; letter-spacing:.2px }
   .bullets{ margin:0; padding-left:20px } .bullets li{ margin:8px 0 }
 
-  /* Embedded Google Drive viewer */
+  /* Embedded Google Drive viewer (portfolio) */
   .embed-wrap{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card); box-shadow:0 10px 28px rgba(2,8,23,.05); margin:10px 0 14px }
   .embed-aspect{ aspect-ratio:16/9; width:100%; border:0 }
   .embed-toolbar{ display:flex; gap:10px; align-items:center; justify-content:space-between; padding:10px 12px; border-top:1px solid var(--line); background:var(--card) }
   .embed-toolbar .btn{ border:1px solid var(--line); background:var(--card); border-radius:10px; padding:6px 10px; font-weight:600; cursor:pointer; font-size:14px }
   .embed-toolbar .btn:hover{ background:#f1f5f9 }
 
-  /* App screenshots grid */
+  /* Screenshots grid */
   .shots{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px }
   .shots img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--line) }
+
+  /* ToneSmith split layout (text left, image right) */
+  .app-split{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:24px;
+    align-items:stretch;
+  }
+  .app-media{
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    background:var(--card);
+    display:flex;
+  }
+  .app-media img{
+    display:block;
+    width:auto;
+    height:100%;       /* match text column height */
+    object-fit:contain;
+  }
+
+  /* YouTube embedded video grid */
+  .video-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; margin-top:12px }
+  .yt-embed{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card); box-shadow:0 10px 28px rgba(2,8,23,.05) }
+  .yt-embed iframe{ width:100%; aspect-ratio:16/9; border:0; display:block }
 
   .skills{ display:grid; grid-template-columns:1fr 1fr; gap:8px 36px }
   .skills h3{ margin:8px 0 4px; font-size:16px } .skills ul{ margin:0; padding-left:18px } .skills li{ margin:6px 0 }
 
   .earlier-roles{ color:var(--sub); margin-top:10px }
 
-  @media (max-width:900px){ .skills{ grid-template-columns:1fr } }
-  @media print{ :root{ --bg:#ffffff } .page{ padding:0 } header,section{ box-shadow:none } .toolbar{ display:none } }
+  @media (max-width:900px){
+    .skills{ grid-template-columns:1fr }
+    .app-split{ grid-template-columns:1fr }
+    .app-media{ height:auto }
+    .app-media img{ width:100%; height:auto }
+  }
+
+  @media print{
+    :root{ --bg:#ffffff }
+    .page{ padding:0 }
+    header,section{ box-shadow:none }
+    .toolbar{ display:none }
+  }
 </style>
 
 <script>
@@ -97,7 +134,7 @@
       const pref = localStorage.getItem("cv-theme");
       if(pref){
         if(pref === "dark") document.documentElement.dataset.theme = "dark";
-        // if 'light' was saved, leave as default light (no data-theme attr)
+        // if 'light' was saved, keep default (no data-theme)
       }else{
         document.documentElement.dataset.theme = "dark"; // default to dark for first-time visitors
       }
@@ -305,51 +342,53 @@
       </div>
     </section>
 
-    <!-- ToneSmith – Guitar Tuner -->
+    <!-- ToneSmith – Guitar Tuner (split layout with image right, scaling to text height) -->
     <section id="tonesmith">
       <h2 class="section-title">ToneSmith – Guitar Tuner App</h2>
-      <p>
-        I designed and built <b>ToneSmith</b>, a precision offline guitar tuner for mobile and desktop, developed with HTML, CSS, and JavaScript.
-        The app captures audio from the device microphone, performs real-time frequency analysis, and reports both absolute frequency (Hz) and pitch deviation (± cents) with a responsive needle display.
-      </p>
-      <p>
-        ToneSmith is <b>offline-first and customisable</b>: alternate tunings, adjustable reference frequency (A<sub>4</sub> from 440–1000 Hz), and user-defined string notes.
-        The dark UI is optimised for small screens with simple controls and clear feedback, focusing on accuracy without distractions.
-      </p>
-      <p>
-        This project combines <b>signal processing</b>, <b>front-end engineering</b>, and <b>UX design</b> to produce a reliable musician’s tool.
-      </p>
-      <div class="shots" aria-label="ToneSmith screenshot">
-        <img src="tonesmith.png" alt="ToneSmith – Offline Guitar Tuner screenshot">
+      <div class="app-split">
+        <div class="app-text">
+          <p>
+            I designed and built <b>ToneSmith</b>, a precision offline guitar tuner for mobile and desktop, developed with HTML, CSS, and JavaScript.
+            The app captures audio from the device microphone, performs real-time frequency analysis, and reports both absolute frequency (Hz) and pitch deviation (± cents) with a responsive needle display.
+          </p>
+          <p>
+            ToneSmith is <b>offline-first and customisable</b>: alternate tunings, adjustable reference frequency (A<sub>4</sub> from 440–1000 Hz), and user-defined string notes.
+            The dark UI is optimised for small screens with simple controls and clear feedback, focusing on accuracy without distractions.
+          </p>
+          <p>
+            This project combines <b>signal processing</b>, <b>front-end engineering</b>, and <b>UX design</b> to produce a reliable musician’s tool.
+          </p>
+        </div>
+        <figure class="app-media" aria-label="ToneSmith screenshot">
+          <img src="tonesmith.png" alt="ToneSmith – Offline Guitar Tuner UI">
+        </figure>
       </div>
     </section>
 
-    <section id="youtube" aria-label="YouTube">
-      <div class="yt-card">
-        <div class="yt-head">
-          <div class="yt-logo" aria-hidden="true">
-            <svg width="28" height="20" viewBox="0 0 28 20" aria-hidden="true">
-              <rect x="0" y="0" width="28" height="20" rx="4" fill="#ff0000"></rect>
-              <polygon points="11,5 11,15 19,10" fill="#ffffff"></polygon>
-            </svg>
-            YouTube
-          </div>
-          <span class="yt-pill">Official Link</span>
+    <!-- YouTube – embedded players (QR and old links removed) -->
+    <section id="youtube" aria-label="YouTube portfolio">
+      <h2 class="section-title">3D Animation Examples (YouTube)</h2>
+      <div class="video-grid">
+        <div class="yt-embed">
+          <iframe
+            src="https://www.youtube.com/embed/VFha8aY1mtg?rel=0&modestbranding=1"
+            title="YouTube video player 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
         </div>
-        <div class="yt-content">
-          <div>
-            <h3 class="yt-title">3D Animation Examples</h3>
-            <p class="yt-sub">Please use the QR Code to get the links to the YouTube videos!</p>
-            <a class="yt-cta" href="https://www.youtube.com/@harrynix98/videos" target="_blank" rel="noopener" aria-label="Watch on YouTube">
-              &#9654;&nbsp; Watch on YouTube
-            </a>
-            <p class="yt-link"><a href="https://www.youtube.com/@harrynix98/videos" target="_blank" rel="noopener">https://www.youtube.com/@harrynix98/videos</a></p>
-          </div>
-          <div>
-            <div class="qrbox" aria-label="YouTube QR code">
-              <img src="assets/qr-youtube.png" alt="QR code to the YouTube videos">
-            </div>
-          </div>
+        <div class="yt-embed">
+          <iframe
+            src="https://www.youtube.com/embed/l9zlKUgfu2I?rel=0&modestbranding=1"
+            title="YouTube video player 2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="yt-embed">
+          <iframe
+            src="https://www.youtube.com/embed/uP1ug97NQMc?rel=0&modestbranding=1"
+            title="YouTube video player 3"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
     </section>
